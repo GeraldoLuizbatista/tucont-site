@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tucont - Contabilidade Integrativa</title>
+  <style>
+    /* Estilos globais */
+    :root {
+      --blue-primary: #1A3557;
+      --orange-secondary: #F26B3C;
+      --white: #FFFFFF;
+      --gray-light: #F8F9FA;
+      --gray-medium: #E9ECEF;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Botões */
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    
+    .btn-primary {
+      background-color: var(--blue-primary);
+      color: var(--white);
+      border: 2px solid var(--blue-primary);
+    }
+    
+    .btn-primary:hover {
+      background-color: transparent;
+      color: var(--blue-primary);
+    }
+    
+    .btn-secondary {
+      background-color: var(--orange-secondary);
+      color: var(--white);
+      border: 2px solid var(--orange-secondary);
+    }
+    
+    .btn-secondary:hover {
+      background-color: transparent;
+      color: var(--orange-secondary);
+    }
+    
+    .btn-outline {
+      background-color: transparent;
+      color: var(--blue-primary);
+      border: 2px solid var(--blue-primary);
+    }
+    
+    .btn-outline:hover {
+      background-color: var(--blue-primary);
+      color: var(--white);
+    }
+    
+    .btn-white {
+      background-color: var(--white);
+      color: var(--blue-primary);
+      border: 2px solid var(--white);
+    }
+    
+    .btn-white:hover {
+      background-color: transparent;
+      color: var(--white);
+    }
+    
+    /* Navegação */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      position: fixed;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.95);
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .navbar-logo img {
+      height: 40px;
+    }
+    
+    .navbar-menu {
+      display: flex;
+      list-style: none;
+    }
+    
+    .navbar-menu li {
+      margin-left: 30px;
+    }
+    
+    .navbar-menu a {
+      text-decoration: none;
+      color: var(--blue-primary);
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    
+    .navbar-menu a:hover {
+      color: var(--orange-secondary);
+    }
+    
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      background-color: var(--white);
+      padding-top: 80px;
+    }
+    
+    .hero-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .hero-text {
+      width: 55%;
+    }
+    
+    .hero-text h1 {
+      font-size: 48px;
+      line-height: 1.2;
+      margin-bottom: 24px;
+      color: var(--blue-primary);
+    }
+    
+    .hero-text p {
+      font-size: 18px;
+      margin-bottom: 32px;
+      color: #555;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+    }
+    
+    .hero-image {
+      width: 40%;
+    }
+    
+    .hero-image img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Seção Modelo Integrativo */
+    .integrativo {
+      padding: 100px 0;
+      background-color: var(--gray-light);
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    
+    .section-header h2 {
+      font-size: 36px;
+      color: var(--blue-primary);
+      margin-bottom: 16px;
+    }
+    
+    .section-header p {
+      font-size: 18px;
+      color: #555;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .features {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+    }
+    
+    .feature {
+      background-color: var(--white);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+    }
+    
+    .feature:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .feature-icon {
+      width: 70px;
+      height: 70px;
+      background-color: rgba(26, 53, 87, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+    
+    .feature-icon i {
+      font-size: 32px;
+      color: var(--blue-primary);
+    }
+    
+    .feature h3 {
+      font-size: 22px;
+      margin-bottom: 16px;
+      color: var(--blue-primary);
+    }
+    
+    .feature p {
+      color: #555;
+    }
+    
+    /* Seção Duas Avenidas */
+    .avenidas {
+      padding: 100px 0;
+      background-color: var(--blue-primary);
+      color: var(--white);
+    }
+    
+    .avenidas .section-header h2 {
+      color: var(--white);
+    }
+    
+    .avenidas .section-header p {
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .avenidas-cols {
+      display: flex;
+      gap: 40px;
+    }
+    
+    .avenida {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 40px;
+      transition: transform 0.3s ease;
+    }
+    
+    .avenida:hover {
+      transform: translateY(-10px);
+    }
+    
+    .avenida-icon {
+      width: 80px;
+      height: 80px;
+      background-color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+    
+    .avenida-icon i {
+      font-size: 36px;
+      color: var(--blue-primary);
+    }
+    
+    .avenida h3 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: var(--white);
+    }
+    
+    .avenida p {
+      margin-bottom: 30px;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 16px;
+    }
+    
+    .avenida ul {
+      margin-bottom: 30px;
+      padding-left: 20px;
+    }
+    
+    .avenida ul li {
+      margin-bottom: 10px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    /* Seção Por que escolher */
+    .why-choose {
+      padding: 100px 0;
+      background-color: var(--white);
+    }
+    
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    
+    .benefit {
+      text-align: center;
+      padding: 30px;
+      border-radius: 10px;
+      background-color: var(--gray-light);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .benefit:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .benefit-icon {
+      width: 60px;
+      height: 60px;
+      background-color: rgba(242, 107, 60, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+    
+    .benefit-icon i {
+      font-size: 28px;
+      color: var(--orange-secondary);
+    }
+    
+    .benefit h4 {
+      font-size: 20px;
+      margin-bottom: 16px;
+      color: var(--blue-primary);
+    }
+    
+    .benefit p {
+      color: #555;
+      font-size: 15px;
+    }
+    
+    /* Seção Depoimentos */
+    .testimonials {
+      padding: 100px 0;
+      background-color: var(--gray-light);
+    }
+    
+    .testimonials-slider {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .testimonial {
+      background-color: var(--white);
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      margin: 20px;
+      text-align: center;
+    }
+    
+    .testimonial-quote {
+      font-style: italic;
+      font-size: 18px;
+      margin-bottom: 30px;
+      color: #555;
+      position: relative;
+    }
+    
+    .testimonial-quote:before {
+      content: '"';
+      font-size: 60px;
+      color: var(--orange-secondary);
+      opacity: 0.2;
+      position: absolute;
+      top: -20px;
+      left: -15px;
+    }
+    
+    .testimonial-author {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .testimonial-author img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 16px;
+    }
+    
+    .testimonial-author h5 {
+      font-size: 18px;
+      margin-bottom: 5px;
+      color: var(--blue-primary);
+    }
+    
+    .testimonial-author span {
+      color: #777;
+      font-size: 14px;
+    }
+    
+    /* Seção CTA */
+    .cta {
+      padding: 80px 0;
+      background-color: var(--orange-secondary);
+      text-align: center;
+      color: var(--white);
+    }
+    
+    .cta h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+    
+    .cta p {
+      max-width: 600px;
+      margin: 0 auto 30px;
+      font-size: 18px;
+      opacity: 0.9;
+    }
+    
+    /* Footer */
+    .footer {
+      background-color: var(--blue-primary);
+      color: var(--white);
+      padding: 70px 0 30px;
+    }
+    
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+    
+    .footer-info {
+      width: 300px;
+    }
+    
+    .footer-logo {
+      margin-bottom: 20px;
+    }
+    
+    .footer-logo img {
+      height: 40px;
+    }
+    
+    .footer-info p {
+      margin-bottom: 20px;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 14px;
+    }
+    
+    .footer-links h4 {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: var(--white);
+    }
+    
+    .footer-links ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+    
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-size: 14px;
+    }
+    
+    .footer-links a:hover {
+      color: var(--orange-secondary);
+    }
+    
+    .footer-social {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .footer-social a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease;
+    }
+    
+    .footer-social a:hover {
+      background-color: var(--orange-secondary);
+    }
+    
+    .footer-social i {
+      color: var(--white);
+      font-size: 18px;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 14px;
+    }
+    
+    /* Responsividade */
+    @media (max-width: 991px) {
+      .hero-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .hero-text, .hero-image {
+        width: 100%;
+      }
+      
+      .hero-text {
+        margin-bottom: 50px;
+      }
+      
+      .hero-buttons {
+        justify-content: center;
+      }
+      
+      .avenidas-cols {
+        flex-direction: column;
+      }
+      
+      .features {
+        flex-direction: column;
+      }
+    }
+    
+    @media (max-width: 767px) {
+      .navbar-menu {
+        display: none;
+      }
+      
+      .hero-text h1 {
+        font-size: 36px;
+      }
+      
+      .section-header h2 {
+        font-size: 30px;
+      }
+      
+      .footer-content {
+        flex-direction: column;
+        gap: 30px;
+      }
+      
+      .footer-info, .footer-links {
+        width: 100%;
+      }
+    }
+  </style>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-logo">
+        <img src="/api/placeholder/150/50" alt="Tucont">
+      </div>
+      <ul class="navbar-menu">
+        <li><a href="#">Início</a></li>
+        <li><a href="#">Avenida Legal</a></li>
+        <li><a href="#">Avenida de Negócios</a></li>
+        <li><a href="#">Sobre Nós</a></li>
+        <li><a href="#">Contato</a></li>
+        <li><a href="#" class="btn btn-primary">Área do Cliente</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Contabilidade que impulsiona seu negócio</h1>
+          <p>A Tucont integra soluções contábeis e estratégias de negócios para transformar dados em oportunidades de crescimento.</p>
+          <div class="hero-buttons">
+            <a href="#" class="btn btn-primary">Conheça nossas soluções</a>
+            <a href="#" class="btn btn-outline">Fale com um especialista</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="/api/placeholder/600/400" alt="Contabilidade Integrativa">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção Modelo Integrativo -->
+  <section class="integrativo">
+    <div class="container">
+      <div class="section-header">
+        <h2>Nosso Modelo Integrativo</h2>
+        <p>Transformamos contabilidade tradicional em uma jornada de desenvolvimento empresarial</p>
+      </div>
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon">
+            <i class="fas fa-chart-pie"></i>
+          </div>
+          <h3>Visão 360°</h3>
+          <p>Unimos contabilidade e consultoria para uma visão completa do seu negócio, identificando oportunidades e riscos.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+          <h3>Tecnologia Avançada</h3>
+          <p>Plataforma digital que automatiza processos contábeis e oferece informações em tempo real para decisões estratégicas.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">
+            <i class="fas fa-handshake"></i>
+          </div>
+          <h3>Consultoria Estratégica</h3>
+          <p>Acompanhamento personalizado para transformar dados contábeis em estratégias de crescimento para seu negócio.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção Duas Avenidas -->
+  <section class="avenidas">
+    <div class="container">
+      <div class="section-header">
+        <h2>Duas Avenidas para seu Sucesso</h2>
+        <p>Nossa abordagem integrativa trabalha em duas frentes para garantir resultados completos</p>
+      </div>
+      <div class="avenidas-cols">
+        <div class="avenida">
+          <div class="avenida-icon">
+            <i class="fas fa-balance-scale"></i>
+          </div>
+          <h3>Avenida Legal</h3>
+          <p>Processos contábeis e legais automatizados para sua tranquilidade</p>
+          <ul>
+            <li>Contabilidade digital</li>
+            <li>Obrigações fiscais em dia</li>
+            <li>Departamento pessoal</li>
+            <li>Consultoria tributária</li>
+          </ul>
+          <a href="#" class="btn btn-white">Saiba mais</a>
+        </div>
+        <div class="avenida">
+          <div class="avenida-icon">
+            <i class="fas fa-rocket"></i>
+          </div>
+          <h3>Avenida de Negócios</h3>
+          <p>Jornada empreendedora com foco no crescimento da sua empresa</p>
+          <ul>
+            <li>Indicadores financeiros</li>
+            <li>Planejamento estratégico</li>
+            <li>Gestão de custos</li>
+            <li>Consultoria empresarial</li>
+          </ul>
+          <a href="#" class="btn btn-white">Saiba mais</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção Por que escolher -->
+  <section class="why-choose">
+    <div class="container">
+      <div class="section-header">
+        <h2>Por que escolher a Tucont</h2>
+        <p>Vantagens que fazem a diferença para o seu negócio</p>
+      </div>
+      <div class="benefits">
+        <div class="benefit">
+          <div class="benefit-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <h4>Economia de tempo e recursos</h4>
+          <p>Automatizamos processos para que você foque no crescimento do seu negócio.</p>
+        </div>
+        <div class="benefit">
+          <div class="benefit-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h4>Decisões baseadas em dados</h4>
+          <p>Informações precisas e atualizadas para decisões estratégicas assertivas.</p>
+        </div>
+        <div class="benefit">
+          <div class="benefit-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h4>Consultoria especializada</h4>
+          <p>Time de especialistas dedicados ao desenvolvimento do seu negócio.</p>
+        </div>
+        <div class="benefit">
+          <div class="benefit-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h4>Segurança e conformidade</h4>
+          <p>Atuamos dentro das normas legais para evitar riscos e sanções.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção Depoimentos -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <h2>O que nossos clientes dizem</h2>
+        <p>Depoimentos de empresários que transformaram seus negócios com a Tucont</p>
+      </div>
+      <div class="testimonials-slider">
+        <div class="testimonial">
+          <div class="testimonial-quote">
+            "A
