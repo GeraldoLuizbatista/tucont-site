@@ -58,6 +58,57 @@ p {
     border-radius: 8px;
     transition: 0.3s ease-in-out;
 }
+/* Estilizar o cabeçalho */
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: #007bff;
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+/* Estilizar a barra de navegação */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* Estilizar o logo */
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Estilizar os links do menu */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #ffdd57;
+}
+
 
 .btn:hover {
     background-color: #0056b3; /* Cor mais escura ao passar o mouse */
