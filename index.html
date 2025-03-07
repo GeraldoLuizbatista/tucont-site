@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tucont - Contabilidade e Consultoria</title>
-    <link rel="stylesheet" href="/tucont-site/css/styles.css">
+    
     <!-- Font Awesome para ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -937,34 +938,1476 @@ section {
         justify-content: center;
     }
 }
+    /* Estilos do Header Estilo Quanta */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.header.scrolled {
+    height: 70px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo img {
+    height: 40px;
+    transition: all 0.3s ease;
+}
+
+.header.scrolled .logo img {
+    height: 35px;
+}
+
+/* Navegação principal */
+.main-nav {
+    display: flex;
+}
+
+.nav-list {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 30px 15px;
+    color: var(--dark-color);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-link i {
+    margin-left: 5px;
+    font-size: 12px;
+    transition: transform 0.3s ease;
+}
+
+.nav-item:hover .nav-link {
+    color: var(--primary-color);
+}
+
+.nav-item:hover .nav-link i {
+    transform: rotate(180deg);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    bottom: 25px;
+    left: 15px;
+    transition: width 0.3s ease;
+}
+
+.nav-item:hover .nav-link::after {
+    width: calc(100% - 30px);
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    min-width: 240px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    padding: 8px 0;
+    z-index: 100;
+}
+
+.nav-item:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu li {
+    width: 100%;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 12px 25px;
+    color: var(--dark-color);
+    font-weight: 400;
+    font-size: 15px;
+    transition: all 0.2s ease;
+}
+
+.dropdown-menu li a:hover {
+    background-color: rgba(0, 87, 167, 0.05);
+    padding-left: 30px;
+    color: var(--primary-color);
+}
+
+/* Ações do header */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.btn-contato {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.btn-contato:hover {
+    background-color: #0046a1;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 87, 167, 0.15);
+}
+
+.btn-cliente {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-cliente:hover {
+    background-color: rgba(0, 87, 167, 0.05);
+    transform: translateY(-2px);
+}
+
+/* Toggle para menu mobile */
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    width: 30px;
+    cursor: pointer;
+}
+
+.mobile-menu-toggle span {
+    height: 3px;
+    width: 100%;
+    background-color: var(--dark-color);
+    margin: 3px 0;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* Menu mobile */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+    z-index: 2000;
+    transform: translateX(100%);
+    transition: transform 0.4s ease-in-out;
+    overflow-y: auto;
+}
+
+.mobile-menu.active {
+    transform: translateX(0);
+}
+
+.mobile-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.mobile-menu-close {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 24px;
+    color: var(--dark-color);
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-close:hover {
+    color: var(--primary-color);
+    transform: rotate(90deg);
+}
+
+.mobile-nav {
+    padding: 30px 0;
+}
+
+.mobile-nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mobile-nav-item a {
+    display: block;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+.mobile-dropdown {
+    border-bottom: 1px solid #f1f1f1;
+    padding-bottom: 15px;
+}
+
+.mobile-dropdown-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--dark-color);
+    cursor: pointer;
+}
+
+.mobile-dropdown-toggle i {
+    transition: transform 0.3s ease;
+}
+
+.mobile-dropdown.active .mobile-dropdown-toggle i {
+    transform: rotate(45deg);
+}
+
+.mobile-dropdown-menu {
+    display: none;
+    padding-left: 15px;
+}
+
+.mobile-dropdown.active .mobile-dropdown-menu {
+    display: block;
+}
+
+.mobile-dropdown-menu li a {
+    padding: 12px 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.mobile-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 30px 0;
+}
+
+.mobile-social {
+    display: flex;
+    gap: 15px;
+    padding: 20px 0;
+}
+
+.mobile-social .social-icon {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 87, 167, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.mobile-social .social-icon:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* Responsividade */
+@media (max-width: 1100px) {
+    .nav-link {
+        padding: 30px 10px;
+    }
+    
+    .btn-contato, .btn-cliente {
+        padding: 8px 15px;
+    }
+}
+
+@media (max-width: 992px) {
+    .main-nav {
+        display: none;
+    }
+    
+    .mobile-menu-toggle {
+        display: flex;
+    }
+    
+    .btn-cliente {
+        display: none;
+    }
+}
+
+@media (max-width: 576px) {
+    .header {
+        height: 70px;
+    }
+    
+    .logo img {
+        height: 35px;
+    }
+    
+    .mobile-actions {
+        flex-direction: column;
+    }
+}
+  /* Estilos da Seção Hero Moderna */
+.hero-modern {
+    position: relative;
+    padding: 160px 0 50px;
+    background: linear-gradient(120deg, #f8faff 0%, #f5f8fd 100%);
+    overflow: hidden;
+}
+
+/* Elementos de background */
+.hero-bg-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.hero-blob {
+    position: absolute;
+    top: -300px;
+    right: -200px;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle at center, rgba(0, 87, 167, 0.03) 0%, rgba(0, 87, 167, 0) 70%);
+    border-radius: 43% 57% 70% 30% / 30% 43% 57% 70%;
+    animation: blob-animation 15s infinite alternate ease-in-out;
+}
+
+.hero-circle {
+    position: absolute;
+    bottom: -150px;
+    left: -100px;
+    width: 500px;
+    height: 500px;
+    border: 1px dashed rgba(0, 87, 167, 0.1);
+    border-radius: 50%;
+    animation: rotate 30s infinite linear;
+}
+
+.hero-dots {
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    width: 200px;
+    height: 200px;
+    background-image: radial-gradient(rgba(0, 87, 167, 0.2) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+@keyframes blob-animation {
+    0% {
+        border-radius: 43% 57% 70% 30% / 30% 43% 57% 70%;
+    }
+    25% {
+        border-radius: 53% 47% 60% 40% / 40% 53% 47% 60%;
+    }
+    50% {
+        border-radius: 63% 37% 50% 50% / 50% 63% 37% 50%;
+    }
+    75% {
+        border-radius: 43% 57% 40% 60% / 60% 43% 57% 40%;
+    }
+    100% {
+        border-radius: 33% 67% 30% 70% / 70% 33% 67% 30%;
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Conteúdo do Hero */
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: a1;
+}
+
+.hero-text {
+    width: 55%;
+    padding-right: 30px;
+}
+
+.hero-tag {
+    display: inline-block;
+    background-color: rgba(0, 87, 167, 0.1);
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 14px;
+    padding: 6px 12px;
+    border-radius: 30px;
+    margin-bottom: 20px;
+}
+
+.hero-modern h1 {
+    font-size: 3.2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: var(--dark-color);
+}
+
+.text-highlight {
+    color: var(--primary-color);
+    position: relative;
+    display: inline-block;
+}
+
+.text-highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background-color: rgba(0, 87, 167, 0.1);
+    z-index: -1;
+    border-radius: 4px;
+}
+
+.hero-modern p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.hero-cta {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0046a1;
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(0, 87, 167, 0.2);
+}
+
+.btn-outline-primary {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: 14px 28px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-outline-primary:hover {
+    background-color: rgba(0, 87, 167, 0.05);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 87, 167, 0.1);
+}
+
+.btn-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Métricas */
+.hero-metrics {
+    display: flex;
+    align-items: center;
+}
+
+.metric-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.metric-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.metric-text {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.metric-divider {
+    width: 1px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin: 0 20px;
+}
+
+/* Imagem do Hero */
+.hero-image {
+    width: 45%;
+    position: relative;
+}
+
+.hero-image img {
+    width: 100%;
+    max-width: 500px;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* Cards flutuantes */
+.hero-floating-card {
+    position: absolute;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 250px;
+    z-index: 2;
+}
+
+.card-1 {
+    top: 20%;
+    left: -30px;
+    animation: float-card 7s ease-in-out infinite;
+}
+
+.card-2 {
+    bottom: 20%;
+    right: -20px;
+    animation: float-card 8s ease-in-out infinite reverse;
+}
+
+@keyframes float-card {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.floating-card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: rgba(0, 87, 167, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    font-size: 18px;
+}
+
+.floating-card-text h4 {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: var(--dark-color);
+}
+
+.floating-card-text p {
+    font-size: 12px;
+    margin: 0;
+    color: #666;
+}
+
+/* Logos de marcas */
+.hero-brands {
+    margin-top: 60px;
+    padding: 30px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.brands-title {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.brands-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.brand-logo {
+    opacity: 0.5;
+    filter: grayscale(100%);
+    transition: all 0.3s ease;
+    max-width: 120px;
+}
+
+.brand-logo:hover {
+    opacity: 1;
+    filter: grayscale(0);
+}
+
+.brand-logo img {
+    max-width: 100%;
+    max-height: 40px;
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .hero-modern h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-content {
+        flex-direction: column;
+    }
+    
+    .hero-text {
+        width: 100%;
+        padding-right: 0;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+    
+    .hero-image {
+        width: 90%;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    .hero-cta {
+        justify-content: center;
+    }
+    
+    .hero-metrics {
+        justify-content: center;
+    }
+    
+    .hero-floating-card {
+        position: relative;
+        margin: 10px auto;
+        top: auto;
+        left: auto;
+        right: auto;
+        bottom: auto;
+    }
+    
+    .card-1, .card-2 {
+        animation: none;
+        position: static;
+        margin: 15px auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-modern {
+        padding: 120px 0 50px;
+    }
+    
+    .hero-modern h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+    }
+    
+    .hero-metrics {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .metric-divider {
+        display: none;
+    }
+    
+    .hero-brands {
+        margin-top: 30px;
+    }
+    
+    .brands-logos {
+        gap: 20px;
+    }
+}
+/* Estilos para a Seção de Serviços Moderna */
+.services-modern {
+    padding: 100px 0;
+    background-color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Header da seção */
+.section-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 60px;
+}
+
+.section-tag {
+    display: inline-block;
+    background-color: rgba(0, 87, 167, 0.1);
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 14px;
+    padding: 6px 12px;
+    border-radius: 30px;
+    margin-bottom: 20px;
+}
+
+.section-header h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--dark-color);
+}
+
+.section-header p {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.7;
+}
+
+/* Tabs de Navegação */
+.services-tabs {
+    position: relative;
+    margin-top: 50px;
+}
+
+.tabs-navigation {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.tab-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px 15px;
+    width: 180px;
+    height: 120px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.tab-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 0;
+    background-color: var(--primary-color);
+    transition: height 0.3s ease;
+}
+
+.tab-button:hover, .tab-button.active {
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 30px rgba(0, 87, 167, 0.1);
+    transform: translateY(-3px);
+}
+
+.tab-button:hover::before, .tab-button.active::before {
+    height: 100%;
+}
+
+.tab-icon {
+    font-size: 24px;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+.tab-button:hover .tab-icon, .tab-button.active .tab-icon {
+    transform: translateY(-5px);
+}
+
+.tab-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--dark-color);
+    line-height: 1.3;
+    transition: color 0.3s ease;
+}
+
+.tab-button:hover .tab-label, .tab-button.active .tab-label {
+    color: var(--primary-color);
+}
+
+/* Conteúdo das Tabs */
+.tab-panel {
+    display: none;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+.tab-content {
+    display: flex;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.tab-image {
+    width: 40%;
+    position: relative;
+    overflow: hidden;
+}
+
+.tab-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.tab-content:hover .tab-image img {
+    transform: scale(1.05);
+}
+
+.tab-image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+.tab-description {
+    width: 60%;
+    padding: 40px;
+}
+
+.tab-description h3 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--dark-color);
+}
+
+.tab-description p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+.tab-features {
+    margin-bottom: 30px;
+}
+
+.tab-features li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.feature-icon {
+    color: var(--primary-color);
+    margin-right: 15px;
+    font-size: 16px;
+    background-color: rgba(0, 87, 167, 0.1);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.feature-text {
+    font-size: 15px;
+    color: #444;
+    line-height: 1.5;
+}
+
+.btn-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: transparent;
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 15px;
+    padding: 0;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-arrow i {
+    transition: transform 0.3s ease;
+}
+
+.btn-arrow:hover {
+    color: #003d74;
+}
+
+.btn-arrow:hover i {
+    transform: translateX(5px);
+}
+
+/* Benefícios */
+.service-benefits {
+    margin-top: 100px;
+}
+
+.benefit-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 50px;
+}
+
+.benefit-header h3 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--dark-color);
+}
+
+.benefit-header p {
+    font-size: 16px;
+    color: #555;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.benefit-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.benefit-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 87, 167, 0.1);
+    border-color: var(--primary-color);
+}
+
+.benefit-icon {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(0, 87, 167, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 24px;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.benefit-card:hover .benefit-icon {
+    background-color: var(--primary-color);
+    color: white;
+    transform: scale(1.1);
+}
+
+.benefit-card h4 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--dark-color);
+}
+
+.benefit-card p {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Animação de Fade In */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .section-header h2 {
+        font-size: 30px;
+    }
+    
+    .tab-content {
+        flex-direction: column;
+    }
+    
+    .tab-image, .tab-description {
+        width: 100%;
+    }
+    
+    .tab-image {
+        height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .services-modern {
+        padding: 70px 0;
+    }
+    
+    .tabs-navigation {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding-bottom: 15px;
+    }
+    
+    .tab-button {
+        min-width: 150px;
+        flex-shrink: 0;
+    }
+    
+    .tab-description {
+        padding: 30px 20px;
+    }
+    
+    .tab-description h3 {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 576px) {
+    .section-header h2 {
+        font-size: 26px;
+    }
+    
+    .benefit-header h3 {
+        font-size: 24px;
+    }
+}
+/* Animações para elementos ao scrollar - Inspirado em AOS */
+[data-aos] {
+    opacity: 0;
+    transition-property: opacity, transform;
+    transition-duration: 0.8s;
+    transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+[data-aos].aos-animate {
+    opacity: 1;
+}
+
+/* Fade animations */
+[data-aos="fade-up"] {
+    transform: translateY(50px);
+}
+
+[data-aos="fade-down"] {
+    transform: translateY(-50px);
+}
+
+[data-aos="fade-right"] {
+    transform: translateX(-50px);
+}
+
+[data-aos="fade-left"] {
+    transform: translateX(50px);
+}
+
+[data-aos="fade-up-right"] {
+    transform: translate(-50px, 50px);
+}
+
+[data-aos="fade-up-left"] {
+    transform: translate(50px, 50px);
+}
+
+[data-aos="fade-down-right"] {
+    transform: translate(-50px, -50px);
+}
+
+[data-aos="fade-down-left"] {
+    transform: translate(50px, -50px);
+}
+
+/* Fade animations com aos-animate */
+[data-aos="fade-up"].aos-animate,
+[data-aos="fade-down"].aos-animate,
+[data-aos="fade-right"].aos-animate,
+[data-aos="fade-left"].aos-animate,
+[data-aos="fade-up-right"].aos-animate,
+[data-aos="fade-up-left"].aos-animate,
+[data-aos="fade-down-right"].aos-animate,
+[data-aos="fade-down-left"].aos-animate {
+    transform: translate(0, 0);
+}
+
+/* Zoom animations */
+[data-aos="zoom-in"] {
+    transform: scale(0.9);
+}
+
+[data-aos="zoom-in-up"] {
+    transform: translateY(50px) scale(0.9);
+}
+
+[data-aos="zoom-in-down"] {
+    transform: translateY(-50px) scale(0.9);
+}
+
+[data-aos="zoom-in-right"] {
+    transform: translateX(-50px) scale(0.9);
+}
+
+[data-aos="zoom-in-left"] {
+    transform: translateX(50px) scale(0.9);
+}
+
+[data-aos="zoom-out"] {
+    transform: scale(1.1);
+}
+
+[data-aos="zoom-out-up"] {
+    transform: translateY(50px) scale(1.1);
+}
+
+[data-aos="zoom-out-down"] {
+    transform: translateY(-50px) scale(1.1);
+}
+
+[data-aos="zoom-out-right"] {
+    transform: translateX(-50px) scale(1.1);
+}
+
+[data-aos="zoom-out-left"] {
+    transform: translateX(50px) scale(1.1);
+}
+
+/* Zoom animations com aos-animate */
+[data-aos="zoom-in"].aos-animate,
+[data-aos="zoom-in-up"].aos-animate,
+[data-aos="zoom-in-down"].aos-animate,
+[data-aos="zoom-in-right"].aos-animate,
+[data-aos="zoom-in-left"].aos-animate,
+[data-aos="zoom-out"].aos-animate,
+[data-aos="zoom-out-up"].aos-animate,
+[data-aos="zoom-out-down"].aos-animate,
+[data-aos="zoom-out-right"].aos-animate,
+[data-aos="zoom-out-left"].aos-animate {
+    transform: translate(0, 0) scale(1);
+}
+
+/* Flip animations */
+[data-aos="flip-left"] {
+    transform: perspective(2500px) rotateY(-90deg);
+}
+
+[data-aos="flip-right"] {
+    transform: perspective(2500px) rotateY(90deg);
+}
+
+[data-aos="flip-up"] {
+    transform: perspective(2500px) rotateX(-90deg);
+}
+
+[data-aos="flip-down"] {
+    transform: perspective(2500px) rotateX(90deg);
+}
+
+/* Flip animations com aos-animate */
+[data-aos="flip-left"].aos-animate,
+[data-aos="flip-right"].aos-animate,
+[data-aos="flip-up"].aos-animate,
+[data-aos="flip-down"].aos-animate {
+    transform: perspective(2500px) rotateY(0) rotateX(0);
+}
+
+/* Delays */
+[data-aos][data-aos-delay="100"] {
+    transition-delay: 0.1s;
+}
+
+[data-aos][data-aos-delay="200"] {
+    transition-delay: 0.2s;
+}
+
+[data-aos][data-aos-delay="300"] {
+    transition-delay: 0.3s;
+}
+
+[data-aos][data-aos-delay="400"] {
+    transition-delay: 0.4s;
+}
+
+[data-aos][data-aos-delay="500"] {
+    transition-delay: 0.5s;
+}
+
+[data-aos][data-aos-delay="600"] {
+    transition-delay: 0.6s;
+}
+
+[data-aos][data-aos-delay="700"] {
+    transition-delay: 0.7s;
+}
+
+[data-aos][data-aos-delay="800"] {
+    transition-delay: 0.8s;
+}
+
+[data-aos][data-aos-delay="900"] {
+    transition-delay: 0.9s;
+}
+
+[data-aos][data-aos-delay="1000"] {
+    transition-delay: 1s;
+}
+
+/* Durations */
+[data-aos][data-aos-duration="800"] {
+    transition-duration: 0.8s;
+}
+
+[data-aos][data-aos-duration="1000"] {
+    transition-duration: 1s;
+}
+
+[data-aos][data-aos-duration="1200"] {
+    transition-duration: 1.2s;
+}
+
+[data-aos][data-aos-duration="1500"] {
+    transition-duration: 1.5s;
+}
+
+[data-aos][data-aos-duration="2000"] {
+    transition-duration: 2s;
+}        
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
+    <!-- Header Estilo Quanta -->
+<header class="header">
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="./images/logo.png" alt="Tucont Logo">
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="#sobre" class="nav-link">Sobre</a>
+                    </li>
+                    <li class="nav-item has-dropdown">
+                        <a href="#servicos" class="nav-link">Serviços <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#contabilidade">Contabilidade Empresarial</a></li>
+                            <li><a href="#consultoria">Consultoria Estratégica</a></li>
+                            <li><a href="#fiscal">Departamento Fiscal</a></li>
+                            <li><a href="#pessoal">Departamento Pessoal</a></li>
+                            <li><a href="#tributario">Planejamento Tributário</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-dropdown">
+                        <a href="#especialidades" class="nav-link">Especialidades <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#pme">Pequenas e Médias Empresas</a></li>
+                            <li><a href="#startups">Startups</a></li>
+                            <li><a href="#servicos">Prestadores de Serviços</a></li>
+                            <li><a href="#comercio">Comércio</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#cases" class="nav-link">Cases</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#blog" class="nav-link">Blog</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="#contato" class="btn-contato">Fale Conosco</a>
+                <button class="btn-cliente">Área do Cliente</button>
+                <div class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Menu mobile no estilo do Quanta -->
+    <div class="mobile-menu">
         <div class="container">
-            <div class="header-content">
+            <div class="mobile-menu-header">
                 <div class="logo">
                     <a href="index.html">
                         <img src="./images/logo.png" alt="Tucont Logo">
                     </a>
                 </div>
-                <nav class="main-nav">
-                    <ul class="nav-list">
-                        <li><a href="#sobre">Sobre</a></li>
-                        <li><a href="#servicos">Serviços</a></li>
-                        <li><a href="#especialidades">Especialidades</a></li>
-                        <li><a href="#cases">Cases</a></li>
-                        <li><a href="#blog">Blog</a></li>
-                        <li><a href="#contato" class="btn-contato">Contato</a></li>
-                    </ul>
-                </nav>
-                <div class="mobile-menu-icon">
-                    <i class="fas fa-bars"></i>
+                <div class="mobile-menu-close">
+                    <i class="fas fa-times"></i>
                 </div>
             </div>
+            <nav class="mobile-nav">
+                <ul class="mobile-nav-list">
+                    <li class="mobile-nav-item">
+                        <a href="#sobre">Sobre</a>
+                    </li>
+                    <li class="mobile-nav-item mobile-dropdown">
+                        <div class="mobile-dropdown-toggle">
+                            <span>Serviços</span>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <ul class="mobile-dropdown-menu">
+                            <li><a href="#contabilidade">Contabilidade Empresarial</a></li>
+                            <li><a href="#consultoria">Consultoria Estratégica</a></li>
+                            <li><a href="#fiscal">Departamento Fiscal</a></li>
+                            <li><a href="#pessoal">Departamento Pessoal</a></li>
+                            <li><a href="#tributario">Planejamento Tributário</a></li>
+                        </ul>
+                    </li>
+                    <li class="mobile-nav-item mobile-dropdown">
+                        <div class="mobile-dropdown-toggle">
+                            <span>Especialidades</span>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <ul class="mobile-dropdown-menu">
+                            <li><a href="#pme">Pequenas e Médias Empresas</a></li>
+                            <li><a href="#startups">Startups</a></li>
+                            <li><a href="#servicos">Prestadores de Serviços</a></li>
+                            <li><a href="#comercio">Comércio</a></li>
+                        </ul>
+                    </li>
+                    <li class="mobile-nav-item">
+                        <a href="#cases">Cases</a>
+                    </li>
+                    <li class="mobile-nav-item">
+                        <a href="#blog">Blog</a>
+                    </li>
+                    <li class="mobile-nav-item">
+                        <a href="#contato">Contato</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="mobile-actions">
+                <a href="#contato" class="btn btn-primary">Fale Conosco</a>
+                <a href="#" class="btn btn-outline">Área do Cliente</a>
+            </div>
+            <div class="mobile-social">
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            </div>
         </div>
-    </header>
+    </div>
+</header>
 
     <!-- Hero Section -->
     <section class="hero">
