@@ -1,159 +1,323 @@
-// Aguarda o carregamento completo do documento
+// Script para interatividade e efeitos de IA no estilo Langflow
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Menu mobile
-    const mobileMenuIcon = document.querySelector('.mobile-menu-icon');
-    const navList = document.querySelector('.nav-list');
+    // Inicialização de animações AOS (Animate On Scroll)
+    initAOS();
     
-    if (mobileMenuIcon) {
-        mobileMenuIcon.addEventListener('click', function() {
-            navList.classList.toggle('active');
-            this.classList.toggle('active');
+    // Efeitos do header
+    initHeaderEffects();
+    
+    // Interatividade para os cards de serviço
+    initServiceCards();
+    
+    // Efeitos de partículas e elementos AI
+    initAIEffects();
+    
+    // Menu mobile
+    initMobileMenu();
+});
+
+// Função para inicializar AOS
+function initAOS() {
+    // Simulando biblioteca AOS para animações de scroll
+    const animatedElements = document.querySelectorAll('[data-aos]');
+    
+    // Função para verificar se um elemento é visível na viewport
+    function isElementInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return (
+            rect.top <= (window.innerHeight * 0.75) &&
+            rect.bottom >= 0 &&
+            rect.left <= window.innerWidth &&
+            rect.right >= 0
+        );
+    }
+    
+    // Função para animar elementos quando visíveis
+    function checkVisibility() {
+        animatedElements.forEach(element => {
+            if (isElementInViewport(element)) {
+                const delay = element.getAttribute('data-aos-delay') || 0;
+                setTimeout(() => {
+                    element.classList.add('aos-animate');
+                }, delay);
+            }
         });
     }
     
-    // FAQ accordions
-    const faqItems = document.querySelectorAll('.faq-item');
-    
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        
-        question.addEventListener('click', () => {
-            // Fecha todos os outros itens
-            faqItems.forEach(otherItem => {
-                if (otherItem !== item) {
-                    otherItem.classList.remove('active');
-                }
-            });
-            
-            // Alterna o estado do item atual
-            item.classList.toggle('active');
-        });
+    // Adiciona classe inicial para preparar animação
+    animatedElements.forEach(element => {
+        const animation = element.getAttribute('data-aos');
+        element.classList.add(`aos-${animation}`);
     });
     
-    // Botão de voltar ao topo
-    const backToTopButton = document.getElementById('back-to-top');
+    // Verifica visibilidade no carregamento e scroll
+    checkVisibility();
+    window.addEventListener('scroll', checkVisibility);
+}
+
+// Função para efeitos do header
+function initHeaderEffects() {
+    const header = document.querySelector('.header-ai');
+    const scrollThreshold = 50;
     
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            backToTopButton.classList.add('active');
-        } else {
-            backToTopButton.classList.remove('active');
-        }
-    });
-    
-    backToTopButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-    
-    // Adiciona classe de animação aos elementos quando eles entram na viewport
-    const animatedElements = document.querySelectorAll('.section-header, .service-card, .about-metrics, .testimonial-card, .blog-card');
-    
-    const animateOnScroll = () => {
-        animatedElements.forEach(element => {
-            const elementPosition = element.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
-            
-            if (elementPosition < windowHeight - 100) {
-                element.classList.add('animate-fadeIn');
+    if (header) {
+        // Função para atualizar classe do header no scroll
+        function updateHeaderOnScroll() {
+            if (window.scrollY > scrollThreshold) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
             }
-        });
-    };
-    
-    // Executa animação no carregamento inicial e durante o scroll
-    animateOnScroll();
-    window.addEventListener('scroll', animateOnScroll);
-    
-    // Header fixo com mudança de cor ao rolar
-    const header = document.querySelector('.header');
-    
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
         }
-    });
-    
-    // Navegação suave para os links de âncora
-    const navLinks = document.querySelectorAll('a[href^="#"]');
-    
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            const targetId = this.getAttribute('href');
+        
+        // Inicializa e adiciona listener de scroll
+        updateHeaderOnScroll();
+        window.addEventListener('scroll', updateHeaderOnScroll);
+        
+        // Efeito de hover nos links do dropdown
+        const dropdownItems = document.querySelectorAll('.dropdown');
+        
+        dropdownItems.forEach(item => {
+            const dropdownMenu = item.querySelector('.dropdown-menu');
             
-            if (targetId === '#') return;
-            
-            e.preventDefault();
-            
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                // Fecha o menu mobile se estiver aberto
-                if (navList.classList.contains('active')) {
-                    navList.classList.remove('active');
-                    mobileMenuIcon.classList.remove('active');
-                }
+            if (dropdownMenu) {
+                item.addEventListener('mouseenter', () => {
+                    // Adiciona delay para simular efeito de cascata nos links
+                    const links = dropdownMenu.querySelectorAll('.dropdown-link');
+                    links.forEach((link, index) => {
+                        link.style.transitionDelay = `${index * 50}ms`;
+                    });
+                });
                 
-                // Calcula a posição levando em conta o header fixo
-                const headerHeight = header.offsetHeight;
-                const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - headerHeight;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
+                item.addEventListener('mouseleave', () => {
+                    // Remove delay ao sair
+                    const links = dropdownMenu.querySelectorAll('.dropdown-link');
+                    links.forEach(link => {
+                        link.style.transitionDelay = '';
+                    });
                 });
             }
         });
-    });
+    }
+}
+
+// Função para interatividade dos cards de serviço
+function initServiceCards() {
+    const serviceCards = document.querySelectorAll('.service-card');
     
-    // Adiciona delay aos itens do menu para efeito de cascata no hover
-    const navItems = document.querySelectorAll('.nav-list li');
-    
-    navItems.forEach((item, index) => {
-        item.style.transitionDelay = `${index * 0.05}s`;
-    });
-    
-    // Adiciona contador para as métricas na seção Sobre
-    const metrics = document.querySelectorAll('.metric .number');
-    let counted = false;
-    
-    const countUp = () => {
-        metrics.forEach(metric => {
-            const target = parseInt(metric.textContent);
-            const suffix = metric.textContent.includes('+') ? '+' : '';
-            let count = 0;
-            const duration = 2000; // 2 segundos
-            const increment = Math.ceil(target / (duration / 30)); // 30fps
-            
-            const timer = setInterval(() => {
-                count += increment;
-                
-                if (count >= target) {
-                    metric.textContent = target + suffix;
-                    clearInterval(timer);
-                } else {
-                    metric.textContent = count + suffix;
-                }
-            }, 30);
-        });
-    };
-    
-    // Inicia o contador quando a seção entrar na viewport
-    const metricsSection = document.querySelector('.about-metrics');
-    
-    if (metricsSection) {
-        window.addEventListener('scroll', () => {
-            const metricsSectionPosition = metricsSection.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
-            
-            if (!counted && metricsSectionPosition < windowHeight - 100) {
-                countUp();
-                counted = true;
+    serviceCards.forEach(card => {
+        // Efeito hover nos cards
+        card.addEventListener('mouseenter', () => {
+            // Anima a linha de progresso
+            const progressLine = card.querySelector('.progress-line');
+            if (progressLine) {
+                progressLine.style.width = '100%';
             }
         });
+        
+        card.addEventListener('mouseleave', () => {
+            // Reseta a linha de progresso
+            const progressLine = card.querySelector('.progress-line');
+            if (progressLine) {
+                progressLine.style.width = '0';
+            }
+        });
+    });
+}
+
+// Função para efeitos de AI
+function initAIEffects() {
+    // Criar partículas dinâmicas no hero e serviços
+    createParticles('.ai-overlay', 15);
+    createParticles('.ai-elements', 10);
+    
+    // Adiciona efeito de mouse follow nas partículas
+    addMouseFollowEffect();
+}
+
+// Função para criar partículas dinâmicas
+function createParticles(containerSelector, count) {
+    const container = document.querySelector(containerSelector);
+    
+    if (!container) return;
+    
+    // Cria um novo div para as partículas dinâmicas
+    const particlesContainer = document.createElement('div');
+    particlesContainer.className = 'dynamic-particles';
+    particlesContainer.style.position = 'absolute';
+    particlesContainer.style.top = '0';
+    particlesContainer.style.left = '0';
+    particlesContainer.style.width = '100%';
+    particlesContainer.style.height = '100%';
+    particlesContainer.style.pointerEvents = 'none';
+    particlesContainer.style.zIndex = '1';
+    
+    container.appendChild(particlesContainer);
+    
+    // Criar partículas
+    for (let i = 0; i < count; i++) {
+        const particle = document.createElement('div');
+        
+        // Propriedades aleatórias
+        const size = Math.random() * 4 + 2; // 2-6px
+        const posX = Math.random() * 100; // 0-100%
+        const posY = Math.random() * 100; // 0-100%
+        const duration = Math.random() * 20 + 10; // 10-30s
+        const delay = Math.random() * 5; // 0-5s
+        
+        // Estilo da partícula
+        particle.className = 'dynamic-particle';
+        particle.style.position = 'absolute';
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${posX}%`;
+        particle.style.top = `${posY}%`;
+        particle.style.borderRadius = '50%';
+        
+        // Cor aleatória entre primary e accent
+        const colors = [
+            'rgba(0, 71, 171, 0.2)', // primary
+            'rgba(79, 149, 255, 0.15)', // primary light
+            'rgba(123, 97, 255, 0.2)' // accent
+        ];
+        particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        
+        // Animação
+        particle.style.animation = `floatParticle ${duration}s infinite ease-in-out ${delay}s`;
+        
+        // Adiciona ao container
+        particlesContainer.appendChild(particle);
     }
-});
+    
+    // Adiciona keyframe de animação se ainda não existir
+    if (!document.querySelector('#particle-animation')) {
+        const style = document.createElement('style');
+        style.id = 'particle-animation';
+        style.textContent = `
+            @keyframes floatParticle {
+                0%, 100% {
+                    transform: translate(0, 0);
+                }
+                25% {
+                    transform: translate(50px, 25px);
+                }
+                50% {
+                    transform: translate(10px, -30px);
+                }
+                75% {
+                    transform: translate(-30px, 10px);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+}
+
+// Efeito de partículas seguindo o cursor
+function addMouseFollowEffect() {
+    const heroSection = document.querySelector('.hero-ai');
+    const servicesSection = document.querySelector('.services-ai');
+    
+    if (!heroSection && !servicesSection) return;
+    
+    // Cria partícula que segue o mouse
+    const mouseParticle = document.createElement('div');
+    mouseParticle.className = 'mouse-particle';
+    mouseParticle.style.position = 'absolute';
+    mouseParticle.style.width = '150px';
+    mouseParticle.style.height = '150px';
+    mouseParticle.style.borderRadius = '50%';
+    mouseParticle.style.background = 'radial-gradient(circle, rgba(123, 97, 255, 0.1) 0%, rgba(123, 97, 255, 0) 70%)';
+    mouseParticle.style.transform = 'translate(-50%, -50%)';
+    mouseParticle.style.pointerEvents = 'none';
+    mouseParticle.style.zIndex = '0';
+    mouseParticle.style.opacity = '0';
+    mouseParticle.style.transition = 'opacity 0.3s ease-out';
+    
+    document.body.appendChild(mouseParticle);
+    
+    // Movimento suave com lerp
+    let mouseX = 0;
+    let mouseY = 0;
+    let particleX = 0;
+    let particleY = 0;
+    
+    // Função de animação
+    function animateParticle() {
+        // Linear interpolation
+        particleX += (mouseX - particleX) * 0.1;
+        particleY += (mouseY - particleY) * 0.1;
+        
+        mouseParticle.style.left = `${particleX}px`;
+        mouseParticle.style.top = `${particleY}px`;
+        
+        requestAnimationFrame(animateParticle);
+    }
+    
+    // Inicia animação
+    animateParticle();
+    
+    // Eventos de mouse
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        
+        // Verifica se o mouse está na seção hero ou services
+        const heroRect = heroSection ? heroSection.getBoundingClientRect() : null;
+        const servicesRect = servicesSection ? servicesSection.getBoundingClientRect() : null;
+        
+        const isInHero = heroRect && 
+            e.clientY >= heroRect.top && 
+            e.clientY <= heroRect.bottom;
+            
+        const isInServices = servicesRect && 
+            e.clientY >= servicesRect.top && 
+            e.clientY <= servicesRect.bottom;
+        
+        if (isInHero || isInServices) {
+            mouseParticle.style.opacity = '1';
+        } else {
+            mouseParticle.style.opacity = '0';
+        }
+    });
+    
+    // Esconde partícula quando o mouse sai da janela
+    document.addEventListener('mouseout', () => {
+        mouseParticle.style.opacity = '0';
+    });
+}
+
+// Função para menu mobile
+function initMobileMenu() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const menuClose = document.querySelector('.menu-close');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const body = document.body;
+    
+    if (menuToggle && menuClose && mobileMenu) {
+        // Abrir menu
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            menuToggle.classList.add('active');
+            body.style.overflow = 'hidden'; // Previne scroll
+        });
+        
+        // Fechar menu
+        menuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            menuToggle.classList.remove('active');
+            body.style.overflow = ''; // Restaura scroll
+        });
+        
+        // Toggle para acordeões no menu mobile
+        const accordionToggles = document.querySelectorAll('.accordion-toggle');
+        
+        accordionToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const parent = toggle.closest('.accordion');
+                parent.classList.toggle('active');
+            });
+        });
+    }
+}
