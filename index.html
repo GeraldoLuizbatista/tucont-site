@@ -21,13 +21,43 @@
 }
 
 :root {
-    --primary-color: #0057A7; /* Azul principal */
-    --secondary-color: #FF7F00; /* Laranja para destaque */
-    --dark-color: #1A2B3C; /* Cor escura para textos */
-    --light-color: #F5F8FD; /* Cor clara para fundos */
-    --gray-color: #F0F0F0; /* Cinza claro para seções alternadas */
-    --text-color: #333333; /* Cor padrão para textos */
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para elementos */
+    /* Cores principais */
+    --primary-dark: #002244;     /* Azul escuro para elementos principais */
+    --primary: #0047AB;          /* Azul médio para elementos interativos */
+    --primary-light: #4F95FF;    /* Azul claro para acentos */
+    
+    /* Cores secundárias */
+    --accent: #7B61FF;           /* Roxo para acentos e destaques AI */
+    --accent-light: #A594FF;     /* Roxo mais claro para gradientes */
+    
+    /* Tons neutros */
+    --dark: #1A1A2E;             /* Quase preto para textos */
+    --gray-dark: #4A4A68;        /* Cinza escuro para textos secundários */
+    --gray: #8E8EA9;             /* Cinza médio para bordas e separadores */
+    --gray-light: #E6E6F2;       /* Cinza claro para fundos alternativos */
+    --light: #F8F9FE;            /* Quase branco para fundos */
+    
+    /* Gradientes */
+    --gradient-blue: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+    --gradient-purple: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    --gradient-ai: linear-gradient(135deg, #002244 0%, #0047AB 50%, #7B61FF 100%);
+    
+    /* Sombras */
+    --shadow-sm: 0 2px 4px rgba(0, 34, 68, 0.05);
+    --shadow-md: 0 4px 8px rgba(0, 34, 68, 0.1);
+    --shadow-lg: 0 8px 24px rgba(0, 34, 68, 0.15);
+    --shadow-ai: 0 12px 30px rgba(123, 97, 255, 0.2);
+    
+    /* Arredondamentos */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 20px;
+    
+    /* Transições */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
 }
 
 body {
@@ -2289,38 +2319,80 @@ section {
     </style>
 </head>
 <body>
-    <!-- Header Estilo Quanta -->
-<header class="header">
+    <!-- Header Moderno Estilo Langflow com Elementos AI -->
+<header class="header-ai">
     <div class="container">
         <div class="header-content">
-            <div class="logo">
-                <a href="index.html">
-                    <img src="./images/logo.png" alt="Tucont Logo">
+            <div class="logo-wrapper">
+                <a href="#" class="logo">
+                    <img src="./images/logo.png" alt="Tucont Logo" class="logo-img">
+                    <span class="logo-text">Tucont</span>
                 </a>
             </div>
+            
             <nav class="main-nav">
                 <ul class="nav-list">
                     <li class="nav-item">
                         <a href="#sobre" class="nav-link">Sobre</a>
                     </li>
-                    <li class="nav-item has-dropdown">
-                        <a href="#servicos" class="nav-link">Serviços <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#contabilidade">Contabilidade Empresarial</a></li>
-                            <li><a href="#consultoria">Consultoria Estratégica</a></li>
-                            <li><a href="#fiscal">Departamento Fiscal</a></li>
-                            <li><a href="#pessoal">Departamento Pessoal</a></li>
-                            <li><a href="#tributario">Planejamento Tributário</a></li>
-                        </ul>
+                    <li class="nav-item dropdown">
+                        <a href="#servicos" class="nav-link">
+                            Serviços
+                            <svg class="dropdown-arrow" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-content">
+                                <div class="dropdown-links">
+                                    <a href="#contabilidade" class="dropdown-link">
+                                        <div class="dropdown-icon">
+                                            <i class="fas fa-calculator"></i>
+                                        </div>
+                                        <div class="dropdown-info">
+                                            <span class="dropdown-title">Contabilidade Empresarial</span>
+                                            <span class="dropdown-desc">Gestão contábil completa</span>
+                                        </div>
+                                    </a>
+                                    <a href="#consultoria" class="dropdown-link">
+                                        <div class="dropdown-icon">
+                                            <i class="fas fa-chart-line"></i>
+                                        </div>
+                                        <div class="dropdown-info">
+                                            <span class="dropdown-title">Consultoria Estratégica</span>
+                                            <span class="dropdown-desc">Análise e planejamento financeiro</span>
+                                        </div>
+                                    </a>
+                                    <a href="#fiscal" class="dropdown-link">
+                                        <div class="dropdown-icon">
+                                            <i class="fas fa-file-invoice-dollar"></i>
+                                        </div>
+                                        <div class="dropdown-info">
+                                            <span class="dropdown-title">Departamento Fiscal</span>
+                                            <span class="dropdown-desc">Conformidade tributária</span>
+                                        </div>
+                                    </a>
+                                    <a href="#pessoal" class="dropdown-link">
+                                        <div class="dropdown-icon">
+                                            <i class="fas fa-users"></i>
+                                        </div>
+                                        <div class="dropdown-info">
+                                            <span class="dropdown-title">Departamento Pessoal</span>
+                                            <span class="dropdown-desc">Gestão de recursos humanos</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dropdown-footer">
+                                    <a href="#todos-servicos" class="btn-text">
+                                        Ver todos os serviços
+                                        <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </li>
-                    <li class="nav-item has-dropdown">
-                        <a href="#especialidades" class="nav-link">Especialidades <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#pme">Pequenas e Médias Empresas</a></li>
-                            <li><a href="#startups">Startups</a></li>
-                            <li><a href="#servicos">Prestadores de Serviços</a></li>
-                            <li><a href="#comercio">Comércio</a></li>
-                        </ul>
+                    <li class="nav-item">
+                        <a href="#especialidades" class="nav-link">Especialidades</a>
                     </li>
                     <li class="nav-item">
                         <a href="#cases" class="nav-link">Cases</a>
@@ -2330,358 +2402,432 @@ section {
                     </li>
                 </ul>
             </nav>
+            
             <div class="header-actions">
-                <a href="#contato" class="btn-contato">Fale Conosco</a>
-                <button class="btn-cliente">Área do Cliente</button>
-                <div class="mobile-menu-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+                <a href="#contato" class="btn btn-primary">Fale Conosco</a>
+                <a href="#cliente" class="btn btn-outline">Área do Cliente</a>
+                <button class="menu-toggle" aria-label="Abrir menu">
+                    <span class="menu-icon"></span>
+                </button>
             </div>
         </div>
     </div>
     
-    <!-- Menu mobile no estilo do Quanta -->
+    <!-- Efeito de partículas de IA no header -->
+    <div class="ai-particles">
+        <div class="particle particle-1"></div>
+        <div class="particle particle-2"></div>
+        <div class="particle particle-3"></div>
+        <div class="particle particle-4"></div>
+        <div class="particle particle-5"></div>
+    </div>
+    
+    <!-- Menu Mobile -->
     <div class="mobile-menu">
-        <div class="container">
+        <div class="mobile-menu-container">
             <div class="mobile-menu-header">
-                <div class="logo">
-                    <a href="index.html">
-                        <img src="./images/logo.png" alt="Tucont Logo">
-                    </a>
-                </div>
-                <div class="mobile-menu-close">
-                    <i class="fas fa-times"></i>
-                </div>
+                <a href="#" class="logo">
+                    <img src="./images/logo.png" alt="Tucont Logo" class="logo-img">
+                    <span class="logo-text">Tucont</span>
+                </a>
+                <button class="menu-close" aria-label="Fechar menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
             </div>
+            
             <nav class="mobile-nav">
                 <ul class="mobile-nav-list">
                     <li class="mobile-nav-item">
-                        <a href="#sobre">Sobre</a>
+                        <a href="#sobre" class="mobile-nav-link">Sobre</a>
                     </li>
-                    <li class="mobile-nav-item mobile-dropdown">
-                        <div class="mobile-dropdown-toggle">
+                    <li class="mobile-nav-item accordion">
+                        <button class="accordion-toggle">
                             <span>Serviços</span>
-                            <i class="fas fa-plus"></i>
+                            <svg class="accordion-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        <div class="accordion-content">
+                            <a href="#contabilidade" class="mobile-sublink">Contabilidade Empresarial</a>
+                            <a href="#consultoria" class="mobile-sublink">Consultoria Estratégica</a>
+                            <a href="#fiscal" class="mobile-sublink">Departamento Fiscal</a>
+                            <a href="#pessoal" class="mobile-sublink">Departamento Pessoal</a>
+                            <a href="#todos-servicos" class="mobile-sublink">Ver todos os serviços</a>
                         </div>
-                        <ul class="mobile-dropdown-menu">
-                            <li><a href="#contabilidade">Contabilidade Empresarial</a></li>
-                            <li><a href="#consultoria">Consultoria Estratégica</a></li>
-                            <li><a href="#fiscal">Departamento Fiscal</a></li>
-                            <li><a href="#pessoal">Departamento Pessoal</a></li>
-                            <li><a href="#tributario">Planejamento Tributário</a></li>
-                        </ul>
-                    </li>
-                    <li class="mobile-nav-item mobile-dropdown">
-                        <div class="mobile-dropdown-toggle">
-                            <span>Especialidades</span>
-                            <i class="fas fa-plus"></i>
-                        </div>
-                        <ul class="mobile-dropdown-menu">
-                            <li><a href="#pme">Pequenas e Médias Empresas</a></li>
-                            <li><a href="#startups">Startups</a></li>
-                            <li><a href="#servicos">Prestadores de Serviços</a></li>
-                            <li><a href="#comercio">Comércio</a></li>
-                        </ul>
                     </li>
                     <li class="mobile-nav-item">
-                        <a href="#cases">Cases</a>
+                        <a href="#especialidades" class="mobile-nav-link">Especialidades</a>
                     </li>
                     <li class="mobile-nav-item">
-                        <a href="#blog">Blog</a>
+                        <a href="#cases" class="mobile-nav-link">Cases</a>
                     </li>
                     <li class="mobile-nav-item">
-                        <a href="#contato">Contato</a>
+                        <a href="#blog" class="mobile-nav-link">Blog</a>
                     </li>
                 </ul>
             </nav>
+            
             <div class="mobile-actions">
-                <a href="#contato" class="btn btn-primary">Fale Conosco</a>
-                <a href="#" class="btn btn-outline">Área do Cliente</a>
+                <a href="#contato" class="btn btn-primary btn-full">Fale Conosco</a>
+                <a href="#cliente" class="btn btn-outline btn-full">Área do Cliente</a>
             </div>
-            <div class="mobile-social">
-                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            
+            <div class="mobile-footer">
+                <div class="mobile-social">
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                </div>
+                <div class="mobile-info">
+                    <p>© 2025 Tucont. Todos os direitos reservados.</p>
+                </div>
             </div>
         </div>
     </div>
 </header>
-<!-- Hero Section Moderna Estilo Quanta -->
-<section class="hero-modern">
-    <div class="hero-bg-elements">
-        <div class="hero-blob"></div>
-        <div class="hero-circle"></div>
-        <div class="hero-dots"></div>
-    </div>
-    
+<!-- Hero Section Estilo Langflow com Elementos AI -->
+<section class="hero-ai">
     <div class="container">
         <div class="hero-content">
-            <div class="hero-text" data-aos="fade-right" data-aos-delay="100">
-                <span class="hero-tag">Contabilidade Especializada</span>
-                <h1>Soluções contábeis <span class="text-highlight">personalizadas</span> para impulsionar seu negócio</h1>
-                <p>Transforme sua gestão financeira com nossa expertise contábil e consultoria estratégica, liberando tempo para você focar no crescimento da sua empresa.</p>
+            <div class="hero-text" data-aos="fade-up">
+                <div class="hero-badge">
+                    <span class="badge-icon"><i class="fas fa-star"></i></span>
+                    <span class="badge-text">Contabilidade com Inteligência Avançada</span>
+                </div>
+                
+                <h1 class="hero-title">
+                    Transforme sua gestão contábil com <span class="gradient-text">soluções inteligentes</span>
+                </h1>
+                
+                <p class="hero-description">
+                    Combinamos expertise contábil e tecnologia avançada para otimizar os processos financeiros da sua empresa, permitindo que você tome decisões estratégicas com base em dados precisos.
+                </p>
                 
                 <div class="hero-cta">
-                    <a href="#servicos" class="btn btn-primary">Conheça nossos serviços</a>
-                    <a href="#contato" class="btn btn-outline-primary">
-                        <span class="btn-icon"><i class="fas fa-calendar-alt"></i></span>
-                        <span class="btn-text">Agende uma consultoria</span>
+                    <a href="#servicos" class="btn btn-primary btn-lg">
+                        <span>Conheça nossos serviços</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#contato" class="btn btn-outline-light btn-lg">
+                        <span class="btn-icon"><i class="fas fa-calendar-check"></i></span>
+                        <span>Agendar uma consulta</span>
                     </a>
                 </div>
                 
-                <div class="hero-metrics">
-                    <div class="metric-item">
-                        <span class="metric-number">15+</span>
-                        <span class="metric-text">Anos de experiência</span>
+                <div class="hero-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="feature-text">Análise de dados avançada</span>
                     </div>
-                    <div class="metric-divider"></div>
-                    <div class="metric-item">
-                        <span class="metric-number">500+</span>
-                        <span class="metric-text">Clientes satisfeitos</span>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="feature-text">Integração com sistemas ERP</span>
                     </div>
-                    <div class="metric-divider"></div>
-                    <div class="metric-item">
-                        <span class="metric-number">98%</span>
-                        <span class="metric-text">Taxa de satisfação</span>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="feature-text">Suporte personalizado</span>
                     </div>
                 </div>
             </div>
             
-            <div class="hero-image" data-aos="fade-left" data-aos-delay="300">
-                <img src="./images/empresariaherofundolaranja.png" alt="Tucont Contabilidade">
-                <div class="hero-floating-card card-1">
-                    <div class="floating-card-icon">
-                        <i class="fas fa-chart-line"></i>
+            <div class="hero-visual" data-aos="fade-left" data-aos-delay="200">
+                <div class="visual-container">
+                    <!-- Ilustração principal -->
+                    <div class="main-illustration">
+                        <img src="./images/tucano.png" alt="Contabilidade Inteligente" class="hero-image">
                     </div>
-                    <div class="floating-card-text">
-                        <h4>Planejamento Tributário</h4>
-                        <p>Reduza a carga tributária da sua empresa</p>
+                    
+                    <!-- Elementos decorativos de IA -->
+                    <div class="ai-elements">
+                        <div class="ai-grid">
+                            <div class="grid-line horizontal-1"></div>
+                            <div class="grid-line horizontal-2"></div>
+                            <div class="grid-line vertical-1"></div>
+                            <div class="grid-line vertical-2"></div>
+                        </div>
+                        
+                        <div class="ai-dots">
+                            <div class="dot dot-1"></div>
+                            <div class="dot dot-2"></div>
+                            <div class="dot dot-3"></div>
+                            <div class="dot dot-4"></div>
+                            <div class="dot dot-5"></div>
+                            <div class="dot dot-6"></div>
+                        </div>
+                        
+                        <div class="ai-circles">
+                            <div class="circle circle-1"></div>
+                            <div class="circle circle-2"></div>
+                            <div class="circle circle-3"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Cards flutuantes -->
+                    <div class="floating-card card-stats">
+                        <div class="card-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-label">Análise Financeira</span>
+                            <div class="stats-bars">
+                                <div class="stat-bar">
+                                    <div class="stat-progress" style="width: 80%"></div>
+                                </div>
+                                <div class="stat-bar">
+                                    <div class="stat-progress" style="width: 65%"></div>
+                                </div>
+                                <div class="stat-bar">
+                                    <div class="stat-progress" style="width: 90%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="floating-card card-notification">
+                        <div class="notification-icon">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <div class="notification-content">
+                            <span class="notification-title">Alerta Fiscal</span>
+                            <span class="notification-text">Oportunidade de economia tributária identificada</span>
+                        </div>
                     </div>
                 </div>
-                <div class="hero-floating-card card-2">
-                    <div class="floating-card-icon">
+            </div>
+        </div>
+        
+        <div class="hero-clients" data-aos="fade-up" data-aos-delay="400">
+            <div class="clients-intro">
+                <span class="clients-text">Empresas que confiam na Tucont:</span>
+            </div>
+            <div class="clients-logos">
+                <div class="client-logo"><img src="./images/client-logo1.png" alt="Cliente 1"></div>
+                <div class="client-logo"><img src="./images/client-logo2.png" alt="Cliente 2"></div>
+                <div class="client-logo"><img src="./images/client-logo3.png" alt="Cliente 3"></div>
+                <div class="client-logo"><img src="./images/client-logo4.png" alt="Cliente 4"></div>
+                <div class="client-logo"><img src="./images/client-logo5.png" alt="Cliente 5"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Overlay de gradiente com efeito de IA -->
+    <div class="ai-overlay">
+        <div class="gradient-blob blob-1"></div>
+        <div class="gradient-blob blob-2"></div>
+        <div class="gradient-lines"></div>
+    </div>
+</section>
+
+<!-- Seção de Serviços Estilo Langflow com Elementos de IA -->
+<section id="servicos" class="services-ai">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <div class="header-tag">Nossos Serviços</div>
+            <h2 class="header-title">Soluções inteligentes para cada aspecto do seu negócio</h2>
+            <p class="header-desc">Combinamos expertise contábil tradicional com tecnologia avançada para oferecer serviços que vão além da conformidade, ajudando sua empresa a crescer.</p>
+        </div>
+        
+        <div class="services-grid">
+            <!-- Serviço 1 -->
+            <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-glow"></div>
+                <div class="card-content">
+                    <div class="service-icon">
                         <i class="fas fa-calculator"></i>
                     </div>
-                    <div class="floating-card-text">
-                        <h4>Gestão Financeira</h4>
-                        <p>Acompanhamento em tempo real</p>
+                    <h3 class="service-title">Contabilidade Empresarial</h3>
+                    <p class="service-desc">Contabilidade completa com análise de dados avançada para oferecer insights estratégicos além dos números.</p>
+                    <ul class="service-features">
+                        <li>
+                            <div class="feature-dot"></div>
+                            <span>Escrituração contábil digital</span>
+                        </li>
+                        <li>
+                            <div class="feature-dot"></div>
+                            <span>Balanços e demonstrações financeiras</span>
+                        </li>
+                        <li>
+                            <div class="feature-dot"></div>
+                            <span>Análise de indicadores financeiros</span>
+                        </li>
+                    </ul>
+                    <a href="#contabilidade" class="card-link">
+                        <span>Saiba mais</span>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 1L15 8L8 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M15 8H1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="card-progress">
+                    <div class="progress-line"></div>
+                </div>
+            </div>
+            
+            <!-- Serviço 2 -->
+            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-glow"></div>
+                <div class="card-content">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="service-title">Consultoria Estratégica</h3>
+                    <p class="service-desc">Orientação especializada para tomada de decisões, com análises preditivas baseadas em modelos financeiros avançados.</p>
+                    <ul class="service-features">
+                        <li>
+                            <div class="feature-dot"></div>
+                            <span>Planejamento tributário</span>
+                        </li>
+                        <li>
+                            <div class="feature-dot"></div>
+                            <span>Análise de viabilidade de projetos</span>
+                        </li>
+                        <li>
+                            <div class="feature-dot"></div>
+                            <span>Reestruturação empresarial</span>
+                        </li>
+                    </ul>
+                    <a href="#consultoria" class="card-link">
+                        <span>Saiba mais</span>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 1L15 8L8 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M15 8H1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="card-progress">
+                    <div class="progress-line"></div>
+                </div>
+            </div>
+            
+            <!-- Serviço 3 -->
+            <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="card-glow"></div>
+                <div class="card-content">
+                    <div class="service-icon">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <h3 class="service-title">Departamento Fiscal</h3>
+                    <p class="service-desc">Gestão fiscal automatizada com monitoramento contínuo das mudanças legislativas e identificação de oportunidades.</p>
+                    <ul class="service-features">
+                        <li>
+                            <div class="feature-dot"></div>
+                            <span>Apuração e declaração de impostos</span>
+                        </li>
+                        <li>
+                            <div class="feature-dot"></div>
+                            <span>Planejamento tributário</span>
+                        </li>
+                        <li>
+                            <div class="feature-dot"></div>
+                            <span>Acompanhamento de obrigações acessórias</span>
+                        </li>
+                    </ul>
+                    <a href="#fiscal" class="card-link">
+                        <span>Saiba mais</span>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 1L15 8L8 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M15 8H1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="card-progress">
+                    <div class="progress-line"></div>
+                </div>
+            </div>
+            
+            <!-- Serviço 4 -->
+            <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="card-glow"></div>
+                <div class="card-content">
+                    <div class="service-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="service-title">Departamento Pessoal</h3>
+                    <p class="service-desc">Gestão de recursos humanos com sistemas inteligentes para processamento de folha e controle de obrigações trabalhistas.</p>
+                    <ul class="service-features">
+                        <li>
+                            <div class="feature-dot"></div>
+                            <span>Folha de pagamento automatizada</span>
+                        </li>
+                        <li>
+                            <div class="feature-dot"></div>
+                            <span>Admissão e rescisão digital</span>
+                        </li>
+                        <li>
+                            <div class="feature-dot"></div>
+                            <span>Gestão de benefícios e encargos</span>
+                        </li>
+                    </ul>
+                    <a href="#pessoal" class="card-link">
+                        <span>Saiba mais</span>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 1L15 8L8 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M15 8H1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="card-progress">
+                    <div class="progress-line"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="services-highlight" data-aos="fade-up" data-aos-delay="500">
+            <div class="highlight-content">
+                <div class="highlight-badge">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M19.4 15C19.2669 15.3016 19.2272 15.6362 19.286 15.9606C19.3448 16.285 19.4995 16.5843 19.73 16.82L19.79 16.88C19.976 17.0657 20.1235 17.2863 20.2241 17.5291C20.3248 17.7719 20.3766 18.0322 20.3766 18.295C20.3766 18.5578 20.3248 18.8181 20.2241 19.0609C20.1235 19.3037 19.976 19.5243 19.79 19.71C19.6043 19.896 19.3837 20.0435 19.1409 20.1441C18.8981 20.2448 18.6378 20.2966 18.375 20.2966C18.1122 20.2966 17.8519 20.2448 17.6091 20.1441C17.3663 20.0435 17.1457 19.896 16.96 19.71L16.9 19.65C16.6643 19.4195 16.365 19.2648 16.0406 19.206C15.7162 19.1472 15.3816 19.1869 15.08 19.32C14.7842 19.4468 14.532 19.6572 14.3543 19.9255C14.1766 20.1938 14.0813 20.5082 14.08 20.83V21C14.08 21.5304 13.8693 22.0391 13.4942 22.4142C13.1191 22.7893 12.6104 23 12.08 23C11.5496 23 11.0409 22.7893 10.6658 22.4142C10.2907 22.0391 10.08 21.5304 10.08 21V20.91C10.0723 20.579 9.96512 20.258 9.77251 19.9887C9.5799 19.7194 9.31074 19.5143 9 19.4C8.69838 19.2669 8.36381 19.2272 8.03941 19.286C7.71502 19.3448 7.41568 19.4995 7.18 19.73L7.12 19.79C6.93425 19.976 6.71368 20.1235 6.47088 20.2241C6.22808 20.3248 5.96783 20.3766 5.705 20.3766C5.44217 20.3766 5.18192 20.3248 4.93912 20.2241C4.69632 20.1235 4.47575 19.976 4.29 19.79C4.10405 19.6043 3.95653 19.3837 3.85588 19.1409C3.75523 18.8981 3.70343 18.6378 3.70343 18.375C3.70343 18.1122 3.75523 17.8519 3.85588 17.6091C3.95653 17.3663 4.10405 17.1457 4.29 16.96L4.35 16.9C4.58054 16.6643 4.73519 16.365 4.794 16.0406C4.85282 15.7162 4.81312 15.3816 4.68 15.08C4.55324 14.7842 4.34276 14.532 4.07447 14.3543C3.80618 14.1766 3.49179 14.0813 3.17 14.08H3C2.46957 14.08 1.96086 13.8693 1.58579 13.4942C1.21071 13.1191 1 12.6104 1 12.08C1 11.5496 1.21071 11.0409 1.58579 10.6658C1.96086 10.2907 2.46957 10.08 3 10.08H3.09C3.42099 10.0723 3.742 9.96512 4.0113 9.77251C4.28059 9.5799 4.48572 9.31074 4.6 9C4.73312 8.69838 4.77282 8.36381 4.714 8.03941C4.65519 7.71502 4.50054 7.41568 4.27 7.18L4.21 7.12C4.02405 6.93425 3.87653 6.71368 3.77588 6.47088C3.67523 6.22808 3.62343 5.96783 3.62343 5.705C3.62343 5.44217 3.67523 5.18192 3.77588 4.93912C3.87653 4.69632 4.02405 4.47575 4.21 4.29C4.39575 4.10405 4.61632 3.95653 4.85912 3.85588C5.10192 3.75523 5.36217 3.70343 5.625 3.70343C5.88783 3.70343 6.14808 3.75523 6.39088 3.85588C6.63368 3.95653 6.85425 4.10405 7.04 4.29L7.1 4.35C7.33568 4.58054 7.63502 4.73519 7.95941 4.794C8.28381 4.85282 8.61838 4.81312 8.92 4.68H9C9.29577 4.55324 9.54802 4.34276 9.72569 4.07447C9.90337 3.80618 9.99872 3.49179 10 3.17V3C10 2.46957 10.2107 1.96086 10.5858 1.58579C10.9609 1.21071 11.4696 1 12 1C12.5304 1 13.0391 1.21071 13.4142 1.58579C13.7893 1.96086 14 2.46957 14 3V3.09C14.0013 3.41179 14.0966 3.72618 14.2743 3.99447C14.452 4.26276 14.7042 4.47324 15 4.6C15.3016 4.73312 15.6362 4.77282 15.9606 4.714C16.285 4.65519 16.5843 4.50054 16.82 4.27L16.88 4.21C17.0657 4.02405 17.2863 3.87653 17.5291 3.77588C17.7719 3.67523 18.0322 3.62343 18.295 3.62343C18.5578 3.62343 18.8181 3.67523 19.0609 3.77588C19.3037 3.87653 19.5243 4.02405 19.71 4.21C19.896 4.39575 20.0435 4.61632 20.1441 4.85912C20.2448 5.10192 20.2966 5.36217 20.2966 5.625C20.2966 5.88783 20.2448 6.14808 20.1441 6.39088C20.0435 6.63368 19.896 6.85425 19.71 7.04L19.65 7.1C19.4195 7.33568 19.2648 7.63502 19.206 7.95941C19.1472 8.28381 19.1869 8.61838 19.32 8.92V9C19.4468 9.29577 19.6572 9.54802 19.9255 9.72569C20.1938 9.90337 20.5082 9.99872 20.83 10H21C21.5304 10 22.0391 10.2107 22.4142 10.5858C22.7893 10.9609 23 11.4696 23 12C23 12.5304 22.7893 13.0391 22.4142 13.4142C22.0391 13.7893 21.5304 14 21 14H20.91C20.5882 14.0013 20.2738 14.0966 20.0055 14.2743C19.7372 14.452 19.5268 14.7042 19.4 15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <h3 class="highlight-title">Soluções Personalizadas</h3>
+                <p class="highlight-desc">Nossa abordagem integra sistemas digitais e expertise humana para criar soluções sob medida para cada cliente, garantindo maior eficiência e resultados superiores.</p>
+                <a href="#contato" class="btn btn-primary btn-md">Solicite um orçamento</a>
+            </div>
+            <div class="highlight-visual">
+                <div class="highlight-image-container">
+                    <img src="./images/tucano.png" alt="Soluções Contábeis Inteligentes" class="highlight-image">
+                    <div class="highlight-shapes">
+                        <div class="shape shape-1"></div>
+                        <div class="shape shape-2"></div>
+                        <div class="shape shape-3"></div>
+                        <div class="shape shape-4"></div>
+                    </div>
+                </div>
+                <div class="highlight-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">96%</div>
+                        <div class="stat-label">Taxa de satisfação dos clientes</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">+500</div>
+                        <div class="stat-label">Empresas atendidas</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">15</div>
+                        <div class="stat-label">Anos de experiência</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     
-    <div class="hero-brands">
-        <div class="container">
-            <div class="brands-title">Empresas que confiam na Tucont:</div>
-            <div class="brands-logos">
-                <div class="brand-logo"><img src="./images/logobem.png" alt="Cliente 1"></div>
-                <div class="brand-logo"><img src="./images/logofmmkt.jpg" alt="Cliente 2"></div>
-                <div class="brand-logo"><img src="./images/logosamh.png" alt="Cliente 3"></div>
-                <div class="brand-logo"><img src="./images/logo-amarela-IUPEC-2.wepp" alt="Cliente 4"></div>
-                <div class="brand-logo"><img src="./images/logo.png" alt="Cliente 5"></div>
-            </div>
-        </div>
-    </div>
-</section>
-
-  <!-- Seção de Serviços Moderna Estilo Quanta -->
-<section id="servicos" class="services-modern">
-    <div class="container">
-        <div class="section-header" data-aos="fade-up">
-            <span class="section-tag">Nossos Serviços</span>
-            <h2>Soluções contábeis completas para o seu negócio</h2>
-            <p>Oferecemos serviços personalizados que combinam expertise técnica com consultoria estratégica para ajudar sua empresa a crescer.</p>
-        </div>
-        
-        <div class="services-tabs">
-            <div class="tabs-navigation" data-aos="fade-up" data-aos-delay="100">
-                <button class="tab-button active" data-tab="tab1">
-                    <span class="tab-icon"><i class="fas fa-calculator"></i></span>
-                    <span class="tab-label">Contabilidade<br>Empresarial</span>
-                </button>
-                <button class="tab-button" data-tab="tab2">
-                    <span class="tab-icon"><i class="fas fa-chart-line"></i></span>
-                    <span class="tab-label">Consultoria<br>Estratégica</span>
-                </button>
-                <button class="tab-button" data-tab="tab3">
-                    <span class="tab-icon"><i class="fas fa-file-invoice-dollar"></i></span>
-                    <span class="tab-label">Departamento<br>Fiscal</span>
-                </button>
-                <button class="tab-button" data-tab="tab4">
-                    <span class="tab-icon"><i class="fas fa-users"></i></span>
-                    <span class="tab-label">Departamento<br>Pessoal</span>
-                </button>
-            </div>
-            
-            <div class="tabs-content" data-aos="fade-up" data-aos-delay="300">
-                <div class="tab-panel active" id="tab1">
-                    <div class="tab-content">
-                        <div class="tab-image">
-                            <img src="./images/servico1.jpg" alt="Contabilidade Empresarial">
-                            <div class="tab-image-overlay"></div>
-                        </div>
-                        <div class="tab-description">
-                            <h3>Contabilidade Empresarial</h3>
-                            <p>Nossa contabilidade empresarial vai além dos registros básicos. Fornecemos análises detalhadas e relatórios personalizados que oferecem uma visão clara da saúde financeira do seu negócio, ajudando na tomada de decisões estratégicas.</p>
-                            <ul class="tab-features">
-                                <li>
-                                    <span class="feature-icon"><i class="fas fa-check"></i></span>
-                                    <span class="feature-text">Escrituração contábil completa</span>
-                                </li>
-                                <li>
-                                    <span class="feature-icon"><i class="fas fa-check"></i></span>
-                                    <span class="feature-text">Análise de balancetes e demonstrações financeiras</span>
-                                </li>
-                                <li>
-                                    <span class="feature-icon"><i class="fas fa-check"></i></span>
-                                    <span class="feature-text">Conciliações bancárias e controle de contas</span>
-                                </li>
-                                <li>
-                                    <span class="feature-icon"><i class="fas fa-check"></i></span>
-                                    <span class="feature-text">Relatórios gerenciais personalizados</span>
-                                </li>
-                            </ul>
-                            <a href="#contato" class="btn btn-arrow">Saiba mais <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="tab-panel" id="tab2">
-                    <div class="tab-content">
-                        <div class="tab-image">
-                            <img src="./images/servico2.jpg" alt="Consultoria Estratégica">
-                            <div class="tab-image-overlay"></div>
-                        </div>
-                        <div class="tab-description">
-                            <h3>Consultoria Estratégica</h3>
-                            <p>Nossa consultoria estratégica ajuda a identificar oportunidades de crescimento e otimização para seu negócio. Trabalhamos em conjunto com sua equipe para desenvolver estratégias financeiras alinhadas aos objetivos da empresa.</p>
-                            <ul class="tab-features">
-                                <li>
-                                    <span class="feature-icon"><i class="fas fa-check"></i></span>
-                                    <span class="feature-text">Análise de viabilidade econômica</span>
-                                </li>
-                                <li>
-                                    <span class="feature-icon"><i class="fas fa-check"></i></span>
-                                    <span class="feature-text">Planejamento tributário estratégico</span>
-                                </li>
-                                <li>
-                                    <span class="feature-icon"><i class="fas fa-check"></i></span>
-                                    <span class="feature-text">Reestruturação societária e empresarial</span>
-                                </li>
-                                <li>
-                                    <span class="feature-icon"><i class="fas fa-check"></i></span>
-                                    <span class="feature-text">Gestão de custos e formação de preços</span>
-                                </li>
-                            </ul>
-                            <a href="#contato" class="btn btn-arrow">Saiba mais <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="tab-panel" id="tab3">
-                    <div class="tab-content">
-                        <div class="tab-image">
-                            <img src="./images/servico3.jpg" alt="Departamento Fiscal">
-                            <div class="tab-image-overlay"></div>
-                        </div>
-                        <div class="tab-description">
-                            <h3>Departamento Fiscal</h3>
-                            <p>Nosso departamento fiscal assegura o cumprimento de todas as obrigações tributárias da sua empresa, mantendo-a em conformidade com a legislação vigente e evitando penalidades. Buscamos sempre as melhores alternativas para redução da carga tributária.</p>
-                            <ul class="tab-features">
-                                <li>
-                                    <span class="feature-icon"><i class="fas fa-check"></i></span>
-                                    <span class="feature-text">Escrituração e apuração de impostos</span>
-                                </li>
-                                <li>
-                                    <span class="feature-icon"><i class="fas fa-check"></i></span>
-                                    <span class="feature-text">Emissão e validação de notas fiscais</span>
-                                </li>
-                                <li>
-                                    <span class="feature-icon"><i class="fas fa-check"></i></span>
-                                    <span class="feature-text">Atendimento a fiscalizações</span>
-                                </li>
-                                <li>
-                                    <span class="feature-icon"><i class="fas fa-check"></i></span>
-                                    <span class="feature-text">Orientação sobre mudanças na legislação</span>
-                                </li>
-                            </ul>
-                            <a href="#contato" class="btn btn-arrow">Saiba mais <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="tab-panel" id="tab4">
-                    <div class="tab-content">
-                        <div class="tab-image">
-                            <img src="./images/servico4.jpg" alt="Departamento Pessoal">
-                            <div class="tab-image-overlay"></div>
-                        </div>
-                        <div class="tab-description">
-                            <h3>Departamento Pessoal</h3>
-                            <p>Cuidamos de todos os aspectos relacionados à gestão de colaboradores, desde a admissão até o desligamento, garantindo conformidade com a legislação trabalhista e previdenciária, além de orientar sobre as melhores práticas de gestão de pessoas.</p>
-                            <ul class="tab-features">
-                                <li>
-                                    <span class="feature-icon"><i class="fas fa-check"></i></span>
-                                    <span class="feature-text">Admissão e demissão de colaboradores</span>
-                                </li>
-                                <li>
-                                    <span class="feature-icon"><i class="fas fa-check"></i></span>
-                                    <span class="feature-text">Folha de pagamento e encargos sociais</span>
-                                </li>
-                                <li>
-                                    <span class="feature-icon"><i class="fas fa-check"></i></span>
-                                    <span class="feature-text">Cálculo de férias, 13º salário e rescisões</span>
-                                </li>
-                                <li>
-                                    <span class="feature-icon"><i class="fas fa-check"></i></span>
-                                    <span class="feature-text">Gestão de benefícios e obrigações trabalhistas</span>
-                                </li>
-                            </ul>
-                            <a href="#contato" class="btn btn-arrow">Saiba mais <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="service-benefits" data-aos="fade-up">
-            <div class="benefit-header">
-                <h3>Por que escolher a Tucont?</h3>
-                <p>Conheça os diferenciais que fazem da Tucont a escolha ideal para a contabilidade e consultoria do seu negócio.</p>
-            </div>
-            <div class="benefits-grid">
-                <div class="benefit-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="benefit-icon">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h4>Tecnologia Avançada</h4>
-                    <p>Utilizamos as mais modernas ferramentas tecnológicas para oferecer um serviço ágil e eficiente.</p>
-                </div>
-                <div class="benefit-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="benefit-icon">
-                        <i class="fas fa-user-tie"></i>
-                    </div>
-                    <h4>Equipe Especializada</h4>
-                    <p>Contamos com profissionais altamente qualificados e em constante atualização.</p>
-                </div>
-                <div class="benefit-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="benefit-icon">
-                        <i class="fas fa-handshake"></i>
-                    </div>
-                    <h4>Atendimento Personalizado</h4>
-                    <p>Cada cliente recebe atenção individual, com soluções desenvolvidas para suas necessidades específicas.</p>
-                </div>
-                <div class="benefit-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="benefit-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h4>Segurança e Confidencialidade</h4>
-                    <p>Garantimos total segurança e confidencialidade no tratamento das informações dos nossos clientes.</p>
-                </div>
-            </div>
+    <!-- Elementos visuais de IA no fundo -->
+    <div class="ai-elements">
+        <div class="network-grid"></div>
+        <div class="floating-dots">
+            <div class="dot-group dot-group-1"></div>
+            <div class="dot-group dot-group-2"></div>
+            <div class="dot-group dot-group-3"></div>
         </div>
     </div>
 </section>
